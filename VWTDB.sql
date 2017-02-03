@@ -49,6 +49,40 @@ LOCK TABLES `employees` WRITE;
 INSERT INTO `employees` VALUES ('Rbustle','Russell','Bustle',3,'*D37C49F9CBEFBF8B6F4B165AC703AA271E079004');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `requests`
+--
+
+DROP TABLE IF EXISTS `requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `requests` (
+  `reqID` mediumint(9) NOT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `reqTitle` varchar(40) DEFAULT NULL,
+  `priority` tinyint(4) DEFAULT NULL,
+  `program` varchar(20) DEFAULT NULL,
+  `site` varchar(20) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `reqDate` date DEFAULT NULL,
+  `approvalDate` date DEFAULT NULL,
+  `completionDate` date DEFAULT NULL,
+  `status` varchar(13) DEFAULT NULL,
+  PRIMARY KEY (`reqID`),
+  KEY `req_fk` (`username`),
+  CONSTRAINT `req_fk` FOREIGN KEY (`username`) REFERENCES `employees` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `requests`
+--
+
+LOCK TABLES `requests` WRITE;
+/*!40000 ALTER TABLE `requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `requests` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -59,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-03 10:52:55
+-- Dump completed on 2017-02-03 12:07:30

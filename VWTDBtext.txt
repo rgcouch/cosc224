@@ -17,6 +17,27 @@ VALUES (
 	PASSWORD("letmein")
 );
 
+//Create Requests table
+
+CREATE TABLE requests (
+	reqID MEDIUMINT PRIMARY KEY NOT NULL,
+	username VARCHAR(20),
+	reqTitle VARCHAR(40),
+	priority TINYINT,
+	program VARCHAR(20),
+	site VARCHAR(20),
+	description VARCHAR(200),
+	reqDate DATE,
+	approvalDate DATE,
+	completionDate DATE,
+	status VARCHAR(13)
+);
+
+ALTER TABLE requests 
+ADD CONSTRAINT req_fk
+FOREIGN KEY("username")
+REFERENCES employees("username")
+
 // Connecting with PHP
 
 <?php
