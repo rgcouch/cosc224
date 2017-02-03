@@ -20,7 +20,7 @@ VALUES (
 //Create Requests table
 
 CREATE TABLE requests (
-	reqID MEDIUMINT PRIMARY KEY NOT NULL,
+	reqID MEDIUMINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	username VARCHAR(20),
 	reqTitle VARCHAR(40),
 	priority TINYINT,
@@ -33,10 +33,28 @@ CREATE TABLE requests (
 	status VARCHAR(13)
 );
 
+//Request foreign key constraint
+
 ALTER TABLE requests 
 ADD CONSTRAINT req_fk
 FOREIGN KEY("username")
 REFERENCES employees("username")
+
+INSERT INTO requests
+(username, reqTitle, priority, program, site, description,
+ reqDate)
+VALUES (
+	"Rbustle",
+	"Junior's problems",
+	4,
+	"cosc205",
+	"c288",
+	"I don't know what is wrong, specifically...But something ain't right.",
+	sysdate()
+);
+
+CREATE OR REPLACE TRIGGER autoIncrReqID_tr
+BEFORE INSERT ON requests
 
 // Connecting with PHP
 

@@ -36,7 +36,8 @@ CREATE TABLE `employees` (
   `lName` varchar(20) DEFAULT NULL,
   `auth` tinyint(4) DEFAULT NULL,
   `pass` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,7 +59,7 @@ DROP TABLE IF EXISTS `requests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requests` (
-  `reqID` mediumint(9) NOT NULL,
+  `reqID` mediumint(9) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT NULL,
   `reqTitle` varchar(40) DEFAULT NULL,
   `priority` tinyint(4) DEFAULT NULL,
@@ -69,10 +70,8 @@ CREATE TABLE `requests` (
   `approvalDate` date DEFAULT NULL,
   `completionDate` date DEFAULT NULL,
   `status` varchar(13) DEFAULT NULL,
-  PRIMARY KEY (`reqID`),
-  KEY `req_fk` (`username`),
-  CONSTRAINT `req_fk` FOREIGN KEY (`username`) REFERENCES `employees` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`reqID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,6 +80,7 @@ CREATE TABLE `requests` (
 
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
+INSERT INTO `requests` VALUES (1,'Rbustle','Junior\'s problems',4,'cosc205','c288','I don\'t know what is wrong, specifically...But something ain\'t right.','2017-02-03',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -93,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-03 12:07:30
+-- Dump completed on 2017-02-03 12:28:25
