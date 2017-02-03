@@ -1,0 +1,16 @@
+CREATE TABLE employees (
+	username VARCHAR(20) PRIMARY KEY NOT NULL,
+	fName VARCHAR(20),
+	lName VARCHAR(20),
+	auth TINYINT,
+	pass VARCHAR(100)
+);
+
+INSERT INTO employees(username, fName, lName, auth, pass)
+VALUES (
+	"Rbustle",
+	"Russell",
+	"Bustle",
+	3,
+	PASSWORD("letmein")
+);
