@@ -6,6 +6,8 @@ CREATE TABLE employees (
 	pass VARCHAR(100)
 );
 
+// Insert statement for employees table
+
 INSERT INTO employees(username, fName, lName, auth, pass)
 VALUES (
 	"Rbustle",
@@ -14,3 +16,40 @@ VALUES (
 	3,
 	PASSWORD("letmein")
 );
+
+// Connecting with PHP
+
+<?php
+$mysqli = mysqli_connect("localhost", "joeuser", "somepass", "testDB");
+    if (mysqli_connect_errno()) {
+	printf("Connect failed: %s\n", mysqli_connect_error());
+	exit();
+} else {
+	printf("Host information: %s\n", mysqli_get_host_info($mysqli));
+	mysqli_close($mysqli);
+}
+?>
+
+// Query with PHP
+
+<?php
+$mysqli = mysqli_connect("localhost", "joeuser", "somepass", "testDB“);
+if (mysqli_connect_errno()) {
+    printf ("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+} else {
+    $sql = "SELECT * FROM testTable";
+    $res = mysqli_query($mysqli, $sql);
+    if ($res) {
+    while ($newArray = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+        $id = $newArray['id'];
+        $testField = $newArray['testField'];
+        echo "The ID is ".$id." and the text is ".$testField."<br/>";
+    }
+    } else {
+        printf ("Could not retrieve records: %s\n", mysqli_error($mysqli));
+}
+mysqli_free_result($res);
+mysqli_close($mysqli);
+}
+?>
